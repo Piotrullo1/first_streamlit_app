@@ -14,10 +14,10 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 my_fruit_list = my_fruit_list.set_index("Fruit")
 
 #pick list so users can pick the fruit they want to include         | filters data based of fruits of customer choice like an example
-streamlit.multiselect("Pick some Fruits:", list(my_fruit_list.index), ['Avocado','Strawberries'])
+fruits_selected = streamlit.multiselect("Pick some Fruits:", list(my_fruit_list.index), ['Avocado','Strawberries'])
+fruits_to_show = my_fruit_list.loc[fruits_selected]
 
 
 
-
-#Display the table on plage
-streamlit.dataframe(my_fruit_list)
+#Display the table on page
+streamlit.dataframe(fruits_to_show)
